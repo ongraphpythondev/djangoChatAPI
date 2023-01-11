@@ -1,5 +1,6 @@
 import os
 import openai
+import time
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -17,4 +18,5 @@ def chatResponse(prompt):
     # presence_penalty=0.6,
     # stop=[" Human:", " AI:"]
     # )
+    time.sleep(5)
     return "This is from response"

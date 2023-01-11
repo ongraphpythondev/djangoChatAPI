@@ -1,14 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 class CustomBaseUser(BaseUserManager):
-    def create(self, email, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
+        """
+        Create and save a User with the given email and password.
+        """
         email = self.normalize_email(email)
-
-        user = self.model(email=email, password=password, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save()
         return user
@@ -21,7 +23,7 @@ class CustomBaseUser(BaseUserManager):
             raise ValueError("The Email must be set")
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
-        return self.create(email, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault("is_staff", True)
@@ -57,7 +59,3 @@ class Chat(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
 
-class Book(models.Model):
-    author_request = models.CharField(max_length=250)
-    author_response = models.CharField(max_length=250)
-    created_date = models.DateTimeField(auto_now_add=True)

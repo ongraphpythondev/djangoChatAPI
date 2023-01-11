@@ -8,17 +8,22 @@
 <html>
     <body>
         <div class="col-sm-3 col-sm-offset-4 frame">
+            
             <div class="main-chat" id="main-chat">
                 <div class="chatTitle">
                     <p>Chat Room</p>
                 </div>
-                <hr/>
+                <hr>
+                {% if chats %}
+                {% for chat in chats %}
                 <div>
-                    <p class="left-chat">this</p>
+                    <p class="left-chat">{{chat.author_request}}</p>
                 </div>
                 <div>
-                    <p class="right-chat">here</p>
-                </div> 
+                    <p class="right-chat">{{chat.author_response}}</p>
+                </div>
+                {% endfor %}
+                {% endif %}
                 
                     
             </div>
