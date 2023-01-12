@@ -59,8 +59,6 @@ class LoginView(View):
         password = request.POST['password']
         user = authenticate(request,username=username,password=password)
         error = []
-        print(user.username)
-        print(user.password)
         if user is not None:
             login(request,user)
             return redirect('/chat/')
