@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chat',
-    'rest_framework'
+    'chat_app'
 ]
 
 MIDDLEWARE = [
@@ -71,14 +70,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatGpt.wsgi.application'
 
-AUTH_USER_MODEL = "chat.User"
+AUTH_USER_MODEL = "chat_app.User"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'chatapi',
+        'NAME': 'chatgptDb',
     }
 }
 
